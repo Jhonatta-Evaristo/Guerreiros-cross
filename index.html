@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guerreiro Cross | Supere Seus Limites Todos os Dias</title>
+    <meta name="description"
+        content="Academia de CrossFit focada em resultados. Agende sua aula experimental na Guerreiro Cross e transforme seu corpo e mente.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Configuration & Custom CSS -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#4b91f1', // Lighter blue
+                            DEFAULT: '#0055ff', // Vibrant primary blue
+                            dark: '#0033aa', // Deep blue
+                        },
+                        surface: {
+                            dark: '#0f172a', // Slate 900
+                            darker: '#020617', // Slate 950
+                        }
+                    },
+                    backgroundImage: {
+                        'texture': "url('https://www.transparenttextures.com/patterns/cubes.png')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles & Scroll Animations */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Angular Cut */
+        .clip-hero {
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+
+        /* Modern Gradient Overlays */
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(2, 6, 23, 0.95) 0%, rgba(2, 6, 23, 0.7) 100%);
+        }
+
+        .card-hover-effect {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: #0055ff;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #0055ff;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b91f1;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-gray-800 bg-gray-50 overflow-x-hidden">
+
+    <!-- Navbar -->
+    <header id="navbar"
+        class="fixed w-full top-0 z-50 transition-all duration-300 bg-surface-dark/95 backdrop-blur-md shadow-md py-4 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-12">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#"
+                        class="font-heading font-black text-2xl tracking-tighter text-white flex items-center gap-2">
+                        <i class="fa-solid fa-dumbbell text-brand"></i>
+                        GUERREIRO<span class="text-brand">CROSS</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <a href="#sobre"
+                        class="text-gray-300 hover:text-white text-sm font-semibold uppercase tracking-wider transition">Sobre</a>
+                    <a href="#servicos"
+                        class="text-gray-300 hover:text-white text-sm font-semibold uppercase tracking-wider transition">Serviços</a>
+                    <a href="#planos"
+                        class="text-gray-300 hover:text-white text-sm font-semibold uppercase tracking-wider transition">Planos</a>
+                    <a href="#localizacao"
+                        class="text-gray-300 hover:text-white text-sm font-semibold uppercase tracking-wider transition">Localização</a>
+                    <a href="#agendar"
+                        class="bg-brand hover:bg-brand-light text-white px-6 py-2.5 rounded-md font-bold uppercase tracking-wider transition shadow-[0_0_15px_rgba(0,85,255,0.4)] hover:shadow-[0_0_25px_rgba(0,85,255,0.6)] transform hover:-translate-y-0.5">
+                        Agendar Aula
+                    </a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="flex md:hidden items-center">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-surface-dark border-t border-white/10 absolute w-full shadow-2xl">
+            <div class="px-4 pt-2 pb-6 space-y-1 text-center">
+                <a href="#sobre"
+                    class="block px-3 py-3 text-sm font-semibold uppercase text-gray-300 hover:text-white hover:bg-white/5">Sobre</a>
+                <a href="#servicos"
+                    class="block px-3 py-3 text-sm font-semibold uppercase text-gray-300 hover:text-white hover:bg-white/5">Serviços</a>
+                <a href="#planos"
+                    class="block px-3 py-3 text-sm font-semibold uppercase text-gray-300 hover:text-white hover:bg-white/5">Planos</a>
+                <a href="#localizacao"
+                    class="block px-3 py-3 text-sm font-semibold uppercase text-gray-300 hover:text-white hover:bg-white/5">Localização</a>
+                <a href="#agendar"
+                    class="block mt-4 w-full bg-brand text-white px-5 py-3 rounded-md font-bold uppercase text-sm hover:bg-brand-light shadow-[0_0_15px_rgba(0,85,255,0.4)]">Agendar
+                    Aula</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. Hero Section -->
+    <section id="inicio"
+        class="relative pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-56 lg:pb-48 min-h-[95vh] flex items-center clip-hero bg-surface-darker">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0 opacity-60">
+            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1920&q=80"
+                alt="Treino CrossFit" class="w-full h-full object-cover object-center" />
+            <div class="absolute inset-0 hero-overlay"></div>
+            <!-- Texture overlay -->
+            <div class="absolute inset-0 bg-texture opacity-30 mix-blend-overlay"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="max-w-3xl border-l-4 border-brand pl-6 md:pl-10">
+                <div class="flex items-center gap-3 mb-6 reveal">
+                    <span class="h-[2px] w-10 bg-brand"></span>
+                    <span class="text-brand-light font-bold text-sm md:text-base uppercase tracking-[0.2em]">Chegou a
+                        sua hora</span>
+                </div>
+                <h1 class="font-heading text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[1.1] mb-6 tracking-tighter reveal"
+                    style="transition-delay: 100ms;">
+                    FORJE SEU <br><span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-brand-light">MELHOR</span>
+                    EU.
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl font-light reveal"
+                    style="transition-delay: 200ms;">
+                    Treinamento de elite acessível a todos. Estrutura premium, coaches especialistas e a comunidade que
+                    não te deixa desistir.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 reveal" style="transition-delay: 300ms;">
+                    <a href="#agendar"
+                        class="bg-brand hover:bg-brand-light text-white text-center font-bold uppercase tracking-wider text-sm md:text-base py-4 px-8 rounded-md shadow-[0_0_20px_rgba(0,85,255,0.4)] transition-all transform hover:-translate-y-1 flex items-center justify-center gap-3">
+                        Agendar Experimental
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Sobre Section (Refinado) -->
+    <section id="sobre" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Imagens Sobrepostas para look Premium -->
+                <div class="reveal relative">
+                    <div class="relative w-4/5 rounded-xl overflow-hidden shadow-2xl z-10 border-4 border-white">
+                        <img src="https://images.unsplash.com/photo-1526506114620-6d43e5e6e300?auto=format&fit=crop&w=800&q=80"
+                            alt="Treino Intenso" class="w-full h-[400px] object-cover">
+                    </div>
+                    <div
+                        class="absolute bottom-[-10%] right-0 w-3/5 rounded-xl overflow-hidden shadow-2xl z-20 border-4 border-white">
+                        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=600&q=80"
+                            alt="Equipamentos" class="w-full h-[250px] object-cover">
+                    </div>
+                    <!-- Elemento Gráfico -->
+                    <div class="absolute -z-10 top-10 -left-10 w-64 h-64 bg-gray-100 rounded-full"></div>
+                </div>
+
+                <div class="reveal lg:pl-10 mt-16 lg:mt-0" style="transition-delay: 200ms;">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-brand font-bold text-sm uppercase tracking-[0.2em]">A Guerreiro Cross</span>
+                    </div>
+                    <h2 class="font-heading text-4xl md:text-5xl font-black text-surface-dark mb-6 tracking-tight">
+                        MUITO MAIS QUE <br>UM BOX COMUM.
+                    </h2>
+                    <p class="text-gray-500 text-lg mb-8 leading-relaxed font-light">
+                        Nascemos com um propósito claro: entregar <strong
+                            class="text-surface-dark font-semibold">performance e saúde de verdade</strong>. Aqui, a
+                        estética é consequência de um corpo forte, funcional e preparado para qualquer desafio da vida
+                        real.
+                    </p>
+
+                    <div class="grid sm:grid-cols-2 gap-8 mb-8 border-t border-gray-100 pt-8">
+                        <div>
+                            <h3 class="font-heading font-black text-5xl text-brand mb-2">+5<span
+                                    class="text-2xl text-gray-300">anos</span></h3>
+                            <p class="text-sm text-gray-500 font-semibold uppercase tracking-wider">Transformando vidas
+                            </p>
+                        </div>
+                        <div>
+                            <h3 class="font-heading font-black text-5xl text-brand mb-2">+1k</h3>
+                            <p class="text-sm text-gray-500 font-semibold uppercase tracking-wider">Alunos ativos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Serviços Section (UI Moderna) -->
+    <section id="servicos" class="py-24 bg-gray-50 border-y border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 reveal">
+                <div class="max-w-2xl">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="h-[2px] w-10 bg-brand"></span>
+                        <span class="text-brand font-bold text-sm uppercase tracking-[0.2em]">Metodologia</span>
+                    </div>
+                    <h2 class="font-heading text-4xl md:text-5xl font-black text-surface-dark tracking-tight">TREINOS DE
+                        ALTA PERFORMANCE</h2>
+                </div>
+                <p class="text-gray-500 mt-4 md:mt-0 font-medium md:max-w-xs text-right">Adaptável para todos, desde o
+                    iniciante ao atleta de elite.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Servico 1 -->
+                <div class="bg-white rounded-xl p-10 border border-gray-100 card-hover-effect reveal group">
+                    <div
+                        class="w-14 h-14 rounded-lg bg-surface-dark text-white flex items-center justify-center text-2xl mb-8 group-hover:bg-brand transition-colors shadow-lg">
+                        <i class="fa-solid fa-person-running"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl text-surface-dark mb-4">CrossFit Clássico</h3>
+                    <p class="text-gray-500 font-light leading-relaxed">Aulas dinâmicas de 1 hora que combinam LPO
+                        (Levantamento de Peso), ginástica e cardio para máximo gasto calórico.</p>
+                </div>
+
+                <!-- Servico 2 -->
+                <div class="bg-white rounded-xl p-10 border border-gray-100 card-hover-effect reveal group"
+                    style="transition-delay: 150ms;">
+                    <div
+                        class="w-14 h-14 rounded-lg bg-surface-dark text-white flex items-center justify-center text-2xl mb-8 group-hover:bg-brand transition-colors shadow-lg">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl text-surface-dark mb-4">Functional Hiit</h3>
+                    <p class="text-gray-500 font-light leading-relaxed">Treinos sem pesos complexos. Foco em suar a
+                        camisa, melhorar o condicionamento respiratório e queima acelerada.</p>
+                </div>
+
+                <!-- Servico 3 -->
+                <div class="bg-white rounded-xl p-10 border border-gray-100 card-hover-effect reveal group"
+                    style="transition-delay: 300ms;">
+                    <div
+                        class="w-14 h-14 rounded-lg bg-surface-dark text-white flex items-center justify-center text-2xl mb-8 group-hover:bg-brand transition-colors shadow-lg">
+                        <i class="fa-solid fa-stopwatch-20"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl text-surface-dark mb-4">Personal Evolution</h3>
+                    <p class="text-gray-500 font-light leading-relaxed">Trabalho lado a lado com um Coach especialista
+                        focado 100% nas suas metas, limitações e resultados estéticos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Planos Section (Agressivo/Premium) -->
+    <section id="planos" class="py-24 bg-surface-darker text-white relative">
+        <!-- Texture background -->
+        <div class="absolute inset-0 bg-texture opacity-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+                <h2 class="font-heading text-4xl md:text-5xl font-black mb-4 tracking-tight">ASSUMA O COMPROMISSO</h2>
+                <p class="text-gray-400 text-lg font-light">Planos transparentes. Escolha o que melhor se adapta à sua
+                    jornada.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
+                <!-- Mensal -->
+                <div
+                    class="bg-surface-dark rounded-2xl p-10 border border-white/10 reveal hover:border-white/30 transition-colors">
+                    <h3 class="font-heading font-bold text-xl text-gray-400 mb-2 uppercase tracking-widest">Mensal</h3>
+                    <div class="flex items-baseline gap-1 mb-6">
+                        <span class="text-2xl font-bold text-gray-300">R$</span>
+                        <span class="text-6xl font-black text-white tracking-tighter">249</span>
+                        <span class="text-gray-500">/mês</span>
+                    </div>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-3 text-gray-300 font-light"><i
+                                class="fa-solid fa-check text-brand text-sm"></i> Acesso a todos os horários</li>
+                        <li class="flex items-center gap-3 text-gray-300 font-light"><i
+                                class="fa-solid fa-check text-brand text-sm"></i> App de Agendamento</li>
+                        <li class="flex items-center gap-3 text-gray-600 font-light"><i
+                                class="fa-solid fa-xmark text-sm"></i> Avaliação física</li>
+                    </ul>
+                    <a href="#agendar"
+                        class="block w-full py-4 px-4 bg-white/5 text-white hover:bg-white hover:text-surface-dark font-bold uppercase tracking-wider text-sm text-center rounded-md transition-colors border border-white/10">Escolher
+                        Mensal</a>
+                </div>
+
+                <!-- Trimestral (Destaque Premium) -->
+                <div class="bg-gradient-to-b from-brand-dark to-brand rounded-2xl p-10 transform md:scale-110 relative reveal z-10 shadow-[0_0_40px_rgba(0,85,255,0.3)] ring-4 ring-brand/50"
+                    style="transition-delay: 150ms;">
+                    <div
+                        class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-white text-brand-dark px-6 py-1.5 rounded-full text-xs font-black uppercase tracking-widest shadow-lg">
+                        Plano Campeão
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-blue-200 mb-2 uppercase tracking-widest mt-2">
+                        Trimestral</h3>
+                    <div class="flex items-baseline gap-1 mb-6 border-b border-white/20 pb-6">
+                        <span class="text-2xl font-bold text-white">R$</span>
+                        <span class="text-6xl font-black text-white tracking-tighter">199</span>
+                        <span class="text-blue-200">/mês</span>
+                    </div>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-3 text-white font-medium"><i
+                                class="fa-solid fa-check text-white text-sm"></i> Acesso a todos os horários</li>
+                        <li class="flex items-center gap-3 text-white font-medium"><i
+                                class="fa-solid fa-check text-white text-sm"></i> App de Agendamento</li>
+                        <li class="flex items-center gap-3 text-white font-medium"><i
+                                class="fa-solid fa-check text-white text-sm"></i> 1 Avaliação física inclusa</li>
+                        <li class="flex items-center gap-3 text-white font-medium"><i
+                                class="fa-solid fa-check text-white text-sm"></i> Camiseta Oficial Box</li>
+                    </ul>
+                    <a href="#agendar"
+                        class="block w-full py-4 px-4 bg-white text-brand-dark hover:bg-gray-100 font-black uppercase tracking-wider text-sm text-center rounded-md transition-colors shadow-lg">Assinar
+                        Trimestral</a>
+                </div>
+
+                <!-- Semestral -->
+                <div class="bg-surface-dark rounded-2xl p-10 border border-white/10 reveal hover:border-white/30 transition-colors"
+                    style="transition-delay: 300ms;">
+                    <h3 class="font-heading font-bold text-xl text-gray-400 mb-2 uppercase tracking-widest">Semestral
+                    </h3>
+                    <div class="flex items-baseline gap-1 mb-6">
+                        <span class="text-2xl font-bold text-gray-300">R$</span>
+                        <span class="text-6xl font-black text-white tracking-tighter">179</span>
+                        <span class="text-gray-500">/mês</span>
+                    </div>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-3 text-gray-300 font-light"><i
+                                class="fa-solid fa-check text-brand text-sm"></i> Acesso a todos os horários</li>
+                        <li class="flex items-center gap-3 text-gray-300 font-light"><i
+                                class="fa-solid fa-check text-brand text-sm"></i> App de Agendamento</li>
+                        <li class="flex items-center gap-3 text-gray-300 font-light"><i
+                                class="fa-solid fa-check text-brand text-sm"></i> 2 Avaliações físicas</li>
+                    </ul>
+                    <a href="#agendar"
+                        class="block w-full py-4 px-4 bg-white/5 text-white hover:bg-white hover:text-surface-dark font-bold uppercase tracking-wider text-sm text-center rounded-md transition-colors border border-white/10">Escolher
+                        Semestral</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Galeria Rápida -->
+    <section class="flex flex-wrap w-full bg-surface-darker">
+        <div class="w-1/2 md:w-1/4 h-64 overflow-hidden relative group">
+            <img src="https://images.unsplash.com/photo-1534367610401-9f5ed68180aa?auto=format&fit=crop&w=600&q=80"
+                alt="Box"
+                class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 group-hover:scale-110 transition duration-700">
+        </div>
+        <div class="w-1/2 md:w-1/4 h-64 overflow-hidden relative group">
+            <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=600&q=80"
+                alt="Treino"
+                class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 group-hover:scale-110 transition duration-700">
+        </div>
+        <div class="w-1/2 md:w-1/4 h-64 overflow-hidden relative group">
+            <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=600&q=80"
+                alt="Equipamentos"
+                class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 group-hover:scale-110 transition duration-700">
+        </div>
+        <div class="w-1/2 md:w-1/4 h-64 overflow-hidden relative group">
+            <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80"
+                alt="Comunidade"
+                class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 group-hover:scale-110 transition duration-700">
+        </div>
+    </section>
+
+    <!-- 6. NOVA SEÇÃO: Localização e Mapa -->
+    <section id="localizacao" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+                <!-- Informações de Localização -->
+                <div class="reveal">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="h-[2px] w-10 bg-brand"></span>
+                        <span class="text-brand font-bold text-sm uppercase tracking-[0.2em]">Onde Estamos</span>
+                    </div>
+                    <h2 class="font-heading text-4xl md:text-5xl font-black text-surface-dark mb-8 tracking-tight">VENHA
+                        CONHECER <br>NOSSA ESTRUTURA.</h2>
+
+                    <div class="space-y-8">
+                        <!-- Endereço -->
+                        <div class="flex items-start gap-5">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center text-brand flex-shrink-0">
+                                <i class="fa-solid fa-location-dot text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-surface-dark text-lg uppercase tracking-wide">Endereço</h4>
+                                <p class="text-gray-500 font-light mt-1 leading-relaxed">
+                                    Av. dos Campeões, 1234 - Bairro Nobre<br>
+                                    São Luís - MA, 65000-000
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Horários -->
+                        <div class="flex items-start gap-5">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center text-brand flex-shrink-0">
+                                <i class="fa-solid fa-clock text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-surface-dark text-lg uppercase tracking-wide">Horário de
+                                    Funcionamento</h4>
+                                <ul class="text-gray-500 font-light mt-1 space-y-1">
+                                    <li><strong class="font-semibold text-gray-700">Seg a Sex:</strong> 06:00 às 10:00 |
+                                        16:00 às 21:00</li>
+                                    <li><strong class="font-semibold text-gray-700">Sábado:</strong> 09:00 às 12:00</li>
+                                    <li><strong class="font-semibold text-gray-700">Domingo:</strong> Fechado (Descanso
+                                        do Guerreiro)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Comodidades -->
+                        <div class="flex items-start gap-5">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center text-brand flex-shrink-0">
+                                <i class="fa-solid fa-car text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-surface-dark text-lg uppercase tracking-wide">Comodidades</h4>
+                                <p class="text-gray-500 font-light mt-1 flex flex-wrap gap-4">
+                                    <span class="flex items-center gap-2"><i
+                                            class="fa-solid fa-check text-green-500"></i> Estacionamento</span>
+                                    <span class="flex items-center gap-2"><i
+                                            class="fa-solid fa-check text-green-500"></i> Vestiários Climatizados</span>
+                                    <span class="flex items-center gap-2"><i
+                                            class="fa-solid fa-check text-green-500"></i> Wi-Fi Grátis</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mapa Embarcado -->
+                <div class="reveal h-[450px] lg:h-[550px] w-full rounded-2xl overflow-hidden shadow-2xl relative border-4 border-gray-100 group"
+                    style="transition-delay: 200ms;">
+                    <!-- Máscara de estilo sobre o mapa (some no hover) -->
+                    <div
+                        class="absolute inset-0 bg-brand/10 mix-blend-multiply pointer-events-none group-hover:opacity-0 transition duration-500 z-10">
+                    </div>
+
+                    <!-- Dica Visual -->
+                    <div
+                        class="absolute top-4 right-4 bg-surface-dark text-white text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-md z-20 shadow-lg flex items-center gap-2 pointer-events-none group-hover:opacity-0 transition duration-300">
+                        <i class="fa-solid fa-hand-pointer"></i> Interaja com o mapa
+                    </div>
+
+                    <!-- IFRAME do Google Maps (Usando São Luís - MA como ref) -->
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m3!1d127641.51705886738!2d-44.33149808359255!3d-2.5307311!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7f68c78c3b772c5%3A0xc6ba62b9dd055b8e!2sS%C3%A3o%20Lu%C3%ADs%20-%20MA!5e0!3m2!1spt-BR!2sbr!4v1713296185265!5m2!1spt-BR!2sbr"
+                        class="w-full h-full filter grayscale group-hover:grayscale-0 transition duration-700"
+                        style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Formulário de Agendamento (CTA Principal Focado) -->
+    <section id="agendar" class="py-24 bg-brand relative overflow-hidden clip-hero"
+        style="clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);">
+        <!-- Texture/Image overlay -->
+        <div class="absolute inset-0 opacity-10 bg-texture mix-blend-overlay"></div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-10">
+            <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+                <h2 class="font-heading text-4xl md:text-5xl font-black mb-4 text-white tracking-tight">VAMOS TREINAR?
+                </h2>
+                <p class="text-blue-100 text-lg font-light">Agende sua aula experimental gratuita agora pelo WhatsApp.
+                    Vagas limitadas por turma.</p>
+            </div>
+
+            <div
+                class="bg-white rounded-2xl shadow-2xl overflow-hidden reveal p-8 md:p-12 max-w-3xl mx-auto border-t-8 border-surface-dark">
+                <form id="formAgendamento" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="nome"
+                                class="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Nome
+                                Completo</label>
+                            <input type="text" id="nome" required
+                                class="w-full px-4 py-4 rounded-md border border-gray-200 focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-colors bg-gray-50 font-medium"
+                                placeholder="Ex: João da Silva">
+                        </div>
+                        <div>
+                            <label for="telefone"
+                                class="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">WhatsApp</label>
+                            <input type="tel" id="telefone" required
+                                class="w-full px-4 py-4 rounded-md border border-gray-200 focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-colors bg-gray-50 font-medium"
+                                placeholder="(00) 00000-0000">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="data"
+                                class="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Data
+                                Desejada</label>
+                            <input type="date" id="data" required
+                                class="w-full px-4 py-4 rounded-md border border-gray-200 focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-colors bg-gray-50 font-medium">
+                        </div>
+                        <div>
+                            <label for="horario"
+                                class="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Turma /
+                                Horário</label>
+                            <select id="horario" required
+                                class="w-full px-4 py-4 rounded-md border border-gray-200 focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-colors bg-gray-50 font-medium text-gray-700">
+                                <option value="" disabled selected>Selecione um horário</option>
+                                <option value="Manhã (06h - 09h)">Manhã (06h - 09h)</option>
+                                <option value="Tarde (16h - 18h)">Tarde (16h - 18h)</option>
+                                <option value="Noite (18h - 21h)">Noite (18h - 21h)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="obs"
+                            class="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Observações
+                            (Opcional)</label>
+                        <textarea id="obs" rows="2"
+                            class="w-full px-4 py-4 rounded-md border border-gray-200 focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-colors bg-gray-50 font-medium resize-none"
+                            placeholder="Nunca treinou? Tem alguma lesão?"></textarea>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-[#25D366] hover:bg-[#1ebd5b] text-white font-black uppercase tracking-wider text-lg py-5 px-8 rounded-md shadow-lg transition-all transform hover:-translate-y-1 flex items-center justify-center gap-3 mt-4">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        Confirmar pelo WhatsApp
+                    </button>
+                    <p class="text-xs text-center text-gray-400 mt-4 uppercase tracking-widest font-bold"><i
+                            class="fa-solid fa-lock"></i> 100% Seguro e sem compromisso</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Footer Premium -->
+    <footer class="bg-surface-darker text-gray-400 py-16 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <a href="#"
+                        class="font-heading font-black text-3xl tracking-tighter text-white flex items-center gap-2 mb-6">
+                        <i class="fa-solid fa-dumbbell text-brand"></i>
+                        GUERREIRO<span class="text-brand">CROSS</span>
+                    </a>
+                    <p class="mb-8 max-w-sm font-light leading-relaxed">Não vendemos aluguel de equipamentos, entregamos
+                        um programa de saúde e performance completo para transformar sua vida.</p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-12 h-12 rounded-lg bg-surface-dark flex items-center justify-center text-white hover:bg-brand transition-colors shadow-md"><i
+                                class="fa-brands fa-instagram text-xl"></i></a>
+                        <a href="#"
+                            class="w-12 h-12 rounded-lg bg-surface-dark flex items-center justify-center text-white hover:bg-brand transition-colors shadow-md"><i
+                                class="fa-brands fa-youtube text-xl"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4
+                        class="text-white font-black mb-6 uppercase text-sm tracking-widest border-l-2 border-brand pl-3">
+                        Navegação</h4>
+                    <ul class="space-y-3 font-light text-sm uppercase tracking-wide">
+                        <li><a href="#inicio" class="hover:text-brand transition-colors">Início</a></li>
+                        <li><a href="#sobre" class="hover:text-brand transition-colors">A Marca</a></li>
+                        <li><a href="#planos" class="hover:text-brand transition-colors">Planos</a></li>
+                        <li><a href="#localizacao" class="hover:text-brand transition-colors">Onde Estamos</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4
+                        class="text-white font-black mb-6 uppercase text-sm tracking-widest border-l-2 border-brand pl-3">
+                        Contato Rápido</h4>
+                    <ul class="space-y-4 text-sm font-light">
+                        <li class="flex items-start gap-3"><i class="fa-brands fa-whatsapp mt-1 text-brand"></i> (11)
+                            99999-9999</li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-location-dot mt-1 text-brand"></i> Av.
+                            dos Campeões, 1234<br>São Luís - MA</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div
+                class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs font-light tracking-wider uppercase">
+                <p>&copy; 2026 Guerreiro Cross. Todos os direitos reservados.</p>
+                <p class="mt-4 md:mt-0 font-bold">FEITO PARA RESULTADOS</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão WhatsApp Fixo -->
+    <a href="https://wa.me/5511999999999" target="_blank"
+        class="fixed bottom-6 right-6 w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center text-3xl shadow-[0_10px_20px_rgba(37,211,102,0.4)] hover:bg-[#1ebd5b] transition-transform transform hover:scale-110 z-50">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
